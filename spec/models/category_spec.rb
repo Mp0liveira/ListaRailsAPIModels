@@ -14,4 +14,10 @@ RSpec.describe Category, type: :model do
       expect(build(:category, name: "test")).to be_invalid
     end
   end
+
+  context "validating description" do
+    it "should be invalid if description nil" do
+      expect(build(:category, description:nil)).to be_invalid
+    end
+  end
 end
