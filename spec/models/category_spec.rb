@@ -19,5 +19,9 @@ RSpec.describe Category, type: :model do
     it "should be invalid if description nil" do
       expect(build(:category, description:nil)).to be_invalid
     end
+    it "should be invalid if repeated" do
+      create(:category, description: "test")
+      expect(build(:category, description: "test")).to be_invalid
+    end
   end
 end
