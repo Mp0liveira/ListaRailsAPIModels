@@ -23,5 +23,9 @@ RSpec.describe Category, type: :model do
       create(:category, description: "test")
       expect(build(:category, description: "test")).to be_invalid
     end
+    it "should be invalid if exceeds max characters" do
+      description = "a" * 10001
+      expect(build(:category, description: description)).to be_invalid
+    end
   end
 end
