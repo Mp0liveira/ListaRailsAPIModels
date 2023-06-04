@@ -4,4 +4,10 @@ RSpec.describe Category, type: :model do
   context "testing factory" do
   it {expect(build(:category)).to be_valid}
   end
+
+  context "validating name" do
+    it "should be invalid if name nil" do
+      expect(build(:category, name:nil)).to be_invalid
+    end
+  end
 end
