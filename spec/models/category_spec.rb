@@ -11,7 +11,7 @@ RSpec.describe Category, type: :model do
     end
     it "should be invalid if repetead" do
       create(:category, name: "test")
-      expect(build(:category, name: "teste")).to be_invalid
+      expect(build(:category, name: "test")).to be_invalid
     end
   end
 end
