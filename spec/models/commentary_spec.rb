@@ -15,5 +15,10 @@ RSpec.describe Commentary, type: :model do
       create(:post, id: 1)
       expect(build(:commentary, post_id: 1, content: nil)).to be_invalid
     end
+    it "should be invalid if exceeds max characters" do
+      content = "a" * 301
+      create(:post, id: 1)
+      expect(build(:commentary, post_id: 1, content: content)).to be_invalid
+    end
   end
 end
