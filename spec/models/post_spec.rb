@@ -9,5 +9,9 @@ RSpec.describe Post, type: :model do
     it "should be invalid if nil" do
       expect(build(:post, title: nil)).to be_invalid
     end
+    it "should be invalid if exceeds max characters" do
+      title = "a" * 21
+      expect(build(:post, title: title)).to be_invalid
+    end
   end
 end
