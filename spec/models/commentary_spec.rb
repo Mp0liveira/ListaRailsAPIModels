@@ -10,4 +10,10 @@ RSpec.describe Commentary, type: :model do
       expect(build(:commentary)).to be_invalid
     end
   end
+  context "testing content" do
+    it "should not be valid if content is nil" do
+      create(:post, id: 1)
+      expect(build(:commentary, post_id: 1, content: nil)).to be_invalid
+    end
+  end
 end
