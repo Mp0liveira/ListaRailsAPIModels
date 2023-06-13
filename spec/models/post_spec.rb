@@ -14,4 +14,10 @@ RSpec.describe Post, type: :model do
       expect(build(:post, title: title)).to be_invalid
     end
   end
+
+  context "testing content" do
+    it "should be invalid if nil" do
+      expect(build(:post, content: nil)).to be_invalid
+    end
+  end
 end
