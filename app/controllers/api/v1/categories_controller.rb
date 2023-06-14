@@ -15,6 +15,14 @@ class Api::V1::CategoriesController < ApplicationController
         render json: e, status: :not_found
     end
 
+    def delete
+        category = Category.find(params[:id])
+        category.destroy!
+        render json: category, status: :ok
+    rescue StandardError => e
+        render json: e, status: :bad_request
+    end
+
     private
 
     def category_params
