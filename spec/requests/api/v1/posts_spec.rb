@@ -36,7 +36,7 @@ RSpec.describe "Api::V1::Posts", type: :request do
     context "when params are ok" do
       it "return https status ok" do
         patch "/api/v1/posts/update/#{post.id}", params:{post: post_params}
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
