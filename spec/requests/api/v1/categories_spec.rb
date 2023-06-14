@@ -25,5 +25,12 @@ RSpec.describe "Api::V1::Categories", type: :request do
         expect(response).to have_http_status(:bad_request)
       end
     end
+    context "when param exceeds max characters" do
+      it "return http status bad request" do
+        category_params = {name: "a" * 51, description: "a" * 10001}
+        post "/api/v1/categories/create", params:{category: category_params}
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
   end
 end
