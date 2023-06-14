@@ -11,5 +11,12 @@ RSpec.describe "Api::V1::Posts", type: :request do
         expect(response).to have_http_status(:created)
       end
     end
+    context "when param are nil" do
+      post_params = nil
+      it "return http status bad request" do
+        post "/api/v1/posts/create", params:{post: post_params}
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
   end
 end
