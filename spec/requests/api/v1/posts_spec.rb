@@ -18,5 +18,13 @@ RSpec.describe "Api::V1::Posts", type: :request do
         expect(response).to have_http_status(:bad_request)
       end
     end
+    context "when param exceeds max characters" do
+      title = "a" * 21
+      post_params = {title: title, content: "test"}
+      it "return http bad request" do
+        post "/api/v1/posts/create", params:{post: post_params}
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
   end
 end
