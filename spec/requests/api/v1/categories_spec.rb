@@ -11,5 +11,12 @@ RSpec.describe "Api::V1::Categories", type: :request do
         expect(response).to have_http_status(:created)
       end
     end
+    context "whem params are nil" do
+      it "return http status bad request" do
+        category_params = nil
+        post "/api/v1/categories/create", params:{category: category_params}
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
   end
 end
