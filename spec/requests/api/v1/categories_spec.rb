@@ -46,4 +46,14 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
   end
+
+  describe "DELETE /delete/:id" do
+    let(:category1) {create(:category, name: "Esportes", description: "Acompanhe tudo sobre esportes")}
+    context "when post exists" do
+      it "return https status ok" do
+        delete "/api/v1/posts/delete/#{category1.id}"
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
