@@ -29,13 +29,26 @@ RSpec.describe "Api::V1::Posts", type: :request do
   end
 
   describe "PATCH /update/:id" do
-    let(:post) {create(:post, title: "Fogo", content: "fogao ta embalado")}
+    let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
     let(:post_params) do
       attributes_for(:post)
     end
     context "when params are ok" do
       it "return https status ok" do
-        patch "/api/v1/posts/update/#{post.id}", params:{post: post_params}
+        patch "/api/v1/posts/update/#{post1.id}", params:{post: post_params}
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe "DELETE /delete/:id" do
+    let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
+    let(:post_params) do
+      attributes_for(:post)
+    end
+    context "when post exists" do
+      it "return https status ok" do
+        delete "/api/v1/posts/delete/#{post1.id}"
         expect(response).to have_http_status(:ok)
       end
     end
