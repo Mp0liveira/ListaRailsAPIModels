@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::Feedbacks", type: :request do
       attributes_for(:feedback)
     end
     context "when params are ok" do
-      it "return https status ok" do
+      it "return http status created" do
         post "/api/v1/posts/#{post1.id}/feedbacks/create", params:{feedback: feedback_params}
         expect(response).to have_http_status(:created)
       end
