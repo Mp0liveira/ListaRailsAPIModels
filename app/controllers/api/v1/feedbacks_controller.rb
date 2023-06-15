@@ -8,6 +8,14 @@ class Api::V1::FeedbacksController < ApplicationController
         render json: e, status: :bad_request
     end
 
+    def update
+        feedback = Feedback.find(params[:id])
+        feedback.update!(feedbacks_params)
+        render json: feedback, status: :ok
+    rescue StandardError => e
+        render json> e, status: :not_found
+    end
+
     private
 
     def feedbacks_params
