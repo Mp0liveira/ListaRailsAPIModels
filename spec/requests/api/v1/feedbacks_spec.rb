@@ -41,7 +41,7 @@ RSpec.describe "Api::V1::Feedbacks", type: :request do
     context "when feedback exists" do
       it "return http status ok" do
         delete "/api/v1/posts/#{post1.id}/feedbacks/delete/#{feedback1.id}"
-        expect(responde).to have_http_status(:ok)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
