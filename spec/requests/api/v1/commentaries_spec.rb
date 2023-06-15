@@ -20,4 +20,18 @@ RSpec.describe "Api::V1::Commentaries", type: :request do
       end
     end
   end
+
+  describe "PATCH /update/:id" do
+    let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
+    let(:commentary1) {create(:commentary, content: "testando os comentarios", post_id: post1.id)}
+    let(:commentary_params) do
+      attributes_for(:commentary)
+    end
+    context "when commentary exists" do
+      it "return http status ok" do
+        patch "/api/v1/posts/#{post1.id}/commentaries/update/#{commentary1.id}"
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
