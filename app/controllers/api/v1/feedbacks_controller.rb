@@ -1,7 +1,7 @@
 class Api::V1::FeedbacksController < ApplicationController
     def create
         post = Post.find(params[:id])
-        feedback = post.feedbacks.create(feedbacks_params)
+        feedback = post.feedbacks.create(feedback_params)
         feedback.save!
         render json: feedback, status: :created
     rescue StandardError => e
@@ -10,7 +10,7 @@ class Api::V1::FeedbacksController < ApplicationController
 
     def update
         feedback = Feedback.find(params[:id])
-        feedback.update!(feedbacks_params)
+        feedback.update!(feedback_params)
         render json: feedback, status: :ok
     rescue StandardError => e
         render json> e, status: :not_found
@@ -26,7 +26,7 @@ class Api::V1::FeedbacksController < ApplicationController
 
     private
 
-    def feedbacks_params
+    def feedback_params
         params.require(:feedback).permit(:like)
     end
 end
