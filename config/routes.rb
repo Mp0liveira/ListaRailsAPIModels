@@ -11,6 +11,11 @@ Rails.application.routes.draw do
         patch 'update/:id', to:'categories#update'
         delete 'delete/:id', to:'categories#delete'
       end
+      scope 'feedbacks' do
+        post 'create', to:'feedbacks#create'
+        patch 'update/:id', to:'feedbacks#update'
+        delete 'ddelete/:id', to:'feedbacks#delete'
+      end
     end
   end  
 end
