@@ -20,4 +20,18 @@ RSpec.describe "Api::V1::Feedbacks", type: :request do
       end
     end
   end
+
+  describe "PATCH /update/:id" do
+    let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
+    let(:feedback1) {create(:feedback, like: true, post_id: post1.id)}
+    let(:feedbacks_params) do
+      attributes_for(:feedback)
+    end
+    context "when params are ok" do
+      it "return http status ok" do
+        patch "/api/v1/posts/#{post1.id}/feedbacks/update/#{feedback1.id}", params:{feedback: feedbacks_params}
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end

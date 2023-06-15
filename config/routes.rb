@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         post 'create', to:'posts#create'
         patch 'update/:id', to:'posts#update'
         delete 'delete/:id', to:'posts#delete'
-        post ':id/feedbacks/create/', to: 'feedbacks#create'
+        post ':id/feedbacks/create', to: 'feedbacks#create'
         patch ':id/feedbacks/update/:id', to: 'feedbacks#update'
         delete ':id/feedbacks/delete/:id', to: 'feedbacks#delete'
       end
