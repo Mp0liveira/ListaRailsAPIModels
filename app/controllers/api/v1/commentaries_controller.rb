@@ -8,6 +8,14 @@ class Api::V1::CommentariesController < ApplicationController
         render json: e, status: :bad_request
     end
 
+    def update
+        commentary = Commentary.find(params[:id])
+        commentary.update!(commentary_params)
+        render json: commentary, status: :ok
+    rescue StandardError => e
+        render json: e, status: :not_found
+    end
+
     private
 
     def commentary_params

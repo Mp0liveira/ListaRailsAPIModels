@@ -29,7 +29,7 @@ RSpec.describe "Api::V1::Commentaries", type: :request do
     end
     context "when commentary exists" do
       it "return http status ok" do
-        patch "/api/v1/posts/#{post1.id}/commentaries/update/#{commentary1.id}"
+        patch "/api/v1/posts/#{post1.id}/commentaries/update/#{commentary1.id}", params:{commentary: commentary_params}
         expect(response).to have_http_status(:ok)
       end
     end

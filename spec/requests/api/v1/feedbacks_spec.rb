@@ -27,7 +27,7 @@ RSpec.describe "Api::V1::Feedbacks", type: :request do
     let(:feedback_params) do
       attributes_for(:feedback)
     end
-    context "when params are ok" do
+    context "when feedback exists" do
       it "return http status ok" do
         patch "/api/v1/posts/#{post1.id}/feedbacks/update/#{feedback1.id}", params:{feedback: feedback_params}
         expect(response).to have_http_status(:ok)
