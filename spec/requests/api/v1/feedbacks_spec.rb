@@ -34,4 +34,15 @@ RSpec.describe "Api::V1::Feedbacks", type: :request do
       end
     end
   end
+
+  describe "DELETE /delete/:id" do
+    let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
+    let(:feedback1) {create(:feedback, like: true, post_id: post1.id)}
+    context "when feedback exists" do
+      it "return http status ok" do
+        delete "/api/v1/posts/#{post1.id}/feedbacks/delete/#{feedback1.id}"
+        expect(responde).to have_http_status(:ok)
+      end
+    end
+  end
 end
