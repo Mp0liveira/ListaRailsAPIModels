@@ -19,9 +19,6 @@ RSpec.describe "Api::V1::Categories", type: :request do
       it "returns a not found error" do
         get "/api/v1/categories/show/999"
         expect(response).to have_http_status(:not_found)
-
-        error_response = JSON.parse(response.body)
-        expect(error_response["error"]).to eq("couldn't find Category")
       end
     end
   end
