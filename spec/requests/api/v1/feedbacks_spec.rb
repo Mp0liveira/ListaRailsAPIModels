@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Feedbacks", type: :request do
+  describe "GET /show" do
+    let(:post1) {create(:post, title: "test", content: "testing")}
+    let(:feedback) { create(:feedback, like: true, post_id: post1.id)}
+
+    context "when the feedback exists" do
+      it "returns the feedback details" do
+        get "/api/v1/posts/#{post1.id}/feedbacks/show/#{feedback.id}"
+        expect(response).to have_http_status(:ok)
+
+        feedback_response = JSON.parse(response.body)
+        expect(feedback_response["like"]).to eq(true)
+      end
+    end
+
+    context "when the feedback does not exist" do
+      it "returns a not found error" do
+        get "/api/v1/posts/#{post1.id}/feedbacks/show/999"
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe "POST /create" do
     let(:post1) {create(:post, title: "Fogo", content: "fogao ta embalado")}
     let(:feedback_params) do
