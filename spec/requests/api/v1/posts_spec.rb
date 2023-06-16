@@ -1,6 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Posts", type: :request do
+  describe "GET /show" do
+    let(:post) { create(:post, title: "test", content: "testing") }
+
+    context "when the post exists" do
+      it "returns the post details" do
+        get "/api/v1/posts/show/#{post.id}"
+        expect(response).to have_http_status(:ok)
+
+        post_response = JSON.parse(response.body)
+        expect(post_response["name"]).to eq("test")
+        expect(post_response["description"]).to eq("testing")
+      end
+    end
+
+    context "when the post does not exist" do
+      it "returns a not found error" do
+        get "/api/v1/posts/show/999"
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
   describe "POST /create" do
     let(:post_params) do
       attributes_for(:post)
