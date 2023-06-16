@@ -1,4 +1,16 @@
 class Api::V1::FeedbacksController < ApplicationController
+    def index
+        feedbacks = Feedback.all
+        render json: feedbacks, status: :ok
+      end
+    
+      def show
+        feedback = Feedback.find(params[:id])
+        render json: feedback, status: :ok
+      rescue ActiveRecord::RecordNotFound => e
+        render json: e, status: :not_found
+      end
+
     def create
         post = Post.find(params[:id])
         feedback = post.feedbacks.create(feedback_params)
