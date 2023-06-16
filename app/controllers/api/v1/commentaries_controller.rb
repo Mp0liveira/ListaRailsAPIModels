@@ -1,4 +1,16 @@
 class Api::V1::CommentariesController < ApplicationController
+    def index
+        commentaries = Commentary.all
+        render json: commentaries, status: :ok
+      end
+    
+      def show
+        commentary = Commentary.find(params[:id])
+        render json: commentary, status: :ok
+      rescue ActiveRecord::RecordNotFound => e
+        render json: e, status: :not_found
+      end
+
     def create
         post = Post.find(params[:id])
         commentary = post.commentaries.create(commentary_params)

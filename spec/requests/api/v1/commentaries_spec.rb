@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Api::V1::Commentaries", type: :request do
   describe "GET /show" do
     let(:post1) {create(:post, title: "test", content: "testing")}
-    let(:commentary) { create(:commentary, content: "teste", post_id: post1.id)}
+    let(:commentary) { create(:commentary, content: "test", post_id: post1.id)}
 
     context "when the commentary exists" do
       it "returns the commentary details" do
