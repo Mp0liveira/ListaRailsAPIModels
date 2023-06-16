@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Categories", type: :request do
   describe "GET /show" do
-    let!(:category) { create(:category, name: "test", description: "testing") }
+    let(:category) { create(:category, name: "test", description: "testing") }
 
     context "when the category exists" do
       it "returns the category details" do
