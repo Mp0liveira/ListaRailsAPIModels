@@ -10,8 +10,8 @@ RSpec.describe "Api::V1::Posts", type: :request do
         expect(response).to have_http_status(:ok)
 
         post_response = JSON.parse(response.body)
-        expect(post_response["name"]).to eq("test")
-        expect(post_response["description"]).to eq("testing")
+        expect(post_response["title"]).to eq("test")
+        expect(post_response["content"]).to eq("testing")
       end
     end
 
